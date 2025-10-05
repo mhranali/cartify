@@ -1,0 +1,35 @@
+<section>
+    <div class="container w-[90%]">
+<section class="bg-white py-16 border border-gray-400">
+  <div class="container w-[90%] mx-auto">
+    <h2 class="text-5xl text-orange-500 text-center">Products List</h2>
+
+    <input
+      type="search"
+      class="border border-orange-600 block w-1/2 mx-auto my-10 rounded"
+    />
+    <div
+      class="parent mt-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
+      @for (product of productsList | paginate: { id: 'foo', itemsPerPage:
+      pageSize, currentPage: p, totalItems: total } |search:text; track
+      product.id) {
+      @if (product.category.slug === `${name}`) {
+        <app-card [product]="product" />
+      }
+      }
+    </div>
+
+    <div class="flex justify-center mt-4">
+      <pagination-controls
+        class="my-pagination"
+        id="foo"
+        (pageChange)="getAllProductsData($event)"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+</section>
+        
+    </div>
+</section>

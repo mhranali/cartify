@@ -1,0 +1,43 @@
+<section class="py-14">
+  <div class="container w-[90%]">
+    <h1 class="text-center text-5xl mb-5">Details Products:</h1>
+    <div class="grid sm:grid-cols-12 items-center gap-4">
+      <div class="col-span-3">
+        <img
+          [src]="productDetails.imageCover"
+          class="w-full"
+          [alt]="productDetails.title"
+        />
+      </div>
+      <div class="col-span-9">
+        <h2 class="text-2xl">{{ productDetails.title }}</h2>
+        <p class="text-gray-700 text-sm my-2">
+          {{ productDetails.description }}
+        </p>
+        <span>{{ productDetails.category.name }}</span>
+        <div class="flex items-center justify-between">
+          <span>{{ productDetails.price }} EGP</span>
+          <span
+            ><i class="fas fa-star text-yellow-300 me-2"></i>
+            {{ productDetails.ratingsAverage }}</span
+          >
+        </div>
+
+<div class="flex items-center space-x-5">
+          <button
+          (click)="addProducrItemToCart(productDetails.id)"
+          class="btn-main w-full mt-2"
+        >
+          Add To cart
+        </button>
+          <button
+          (click)="addProducrItemToWishList(productDetails.id)"
+          class="btn-main w-25 mt-2"
+        >
+         <i class="fa solid fa-heart"></i>
+        </button>
+</div>
+      </div>
+    </div>
+  </div>
+</section>

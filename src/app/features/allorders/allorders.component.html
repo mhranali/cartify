@@ -1,0 +1,83 @@
+<section>
+  <div class="container w-[90%]">
+    <div class="max-w-5xl mx-auto p-4">
+      @for (order of orderList; track order._id) {
+        <div
+          class="bg-gray-100 rounded-2xl shadow-md flex flex-col md:flex-row gap-6 p-6 mb-5"
+        >
+          <div class="flex-shrink-0">
+            <!-- <i class="fa-solid fa-truck-fast text-6xl"></i> -->
+            <img [src]="order.cartItems[0].product.imageCover" class="w-[200px]" alt="{{ order.cartItems[0].product.title }}">
+
+          </div>
+
+          <div class="flex-1 flex flex-col justify-between">
+            <div>
+              <h2 class="text-green-600 font-semibold text-lg">
+                Order Id:
+                <span class="text-green-700">{{ order._id | term:5 }}</span>
+              </h2>
+
+              <p class="text-gray-700 mt-1">
+                <span class="font-semibold">Order date:</span>
+                {{ order.createdAt | term : 10}}
+              </p>
+
+              <p class="text-gray-700">
+                <span class="font-semibold">Payment Method:</span>
+                {{ order.paymentMethodType }}
+              </p>
+
+              <p class="text-gray-700">
+                <span class="font-semibold">Shipping city:</span>
+                {{ order.shippingAddress.city }}
+              </p>
+
+              <p class="text-gray-700">
+                <span class="font-semibold">Shipping Address:</span>
+                {{ order.shippingAddress.details }}
+              </p>
+
+              <p class="text-gray-700">
+                <span class="font-semibold">Phone:</span>
+                {{ order.shippingAddress.phone }}
+              </p>
+
+              <div class="mt-3 space-y-1">
+                <p class="text-gray-800">
+                  <span class="font-semibold">Order Delivered:</span>
+                  @if(order.isDelivered) {
+                    <span class="text-green-500">  ✔</span>
+                  } @else {
+                    <span class="text-red-500">  ✘</span>
+                  }
+                </p>
+
+                <p class="text-gray-800">
+                  <span class="font-semibold">Order Paid:</span>
+                  @if(order.isPaid) {
+                    <span class="text-green-500">  ✔</span>
+                  } @else {
+                    <span class="text-red-500">  ✘</span>
+                  }
+                </p>
+              </div>
+
+              <p class="text-gray-600 mt-3">
+                <span class="font-semibold">Order last update:</span>
+                {{ order.updatedAt }}
+              </p>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow p-4 w-60 self-start">
+            <hr class="my-2" />
+            <p class="flex justify-between text-lg font-bold text-gray-800">
+              <span>Total Order Price:</span>
+              <span>EGP {{ order.totalOrderPrice }}</span>
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

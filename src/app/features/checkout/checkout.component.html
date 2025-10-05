@@ -1,0 +1,34 @@
+<section class="bg-gray-200 p-10 my-14 md:w-1/2 mx-auto shadow">
+  <h1 class="text-center text-4xl my-3">CheckOut</h1>
+
+  <form [formGroup]="checkoutForm">
+    <app-input
+      [element]="'text'"
+      [control]="checkoutForm.get('shippingAddress')?.get('details')"
+      [id]="'details'"
+      [labelInput]="'Details'"
+    ></app-input>
+
+    <app-input
+      [element]="'input'"
+      [control]="checkoutForm.get('shippingAddress')?.get('phone')"
+      [id]="'phone'"
+      [labelInput]="'Phone'"
+      [typeInput]="'tel'"
+      >accept only egypt phone numbers</app-input
+    >
+
+    <app-input
+      [element]="'input'"
+      [control]="checkoutForm.get('shippingAddress')?.get('city')"
+      [id]="'city'"
+      [labelInput]="'City'"
+      [typeInput]="'text'"
+    ></app-input>
+
+    <div class="flix items-center space-x-18">
+      <button (click)="submitForm()" class="btn-main w-75">Payment By Visa</button>
+      <button (click)="submitFormCash()"  routerLink="/allorders" class="btn-main w-75">Payment By Cash</button>
+    </div>
+  </form>
+</section>

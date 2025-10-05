@@ -1,0 +1,37 @@
+<section class="bg-white py-16 border border-gray-400">
+  <div class="container w-[90%] mx-auto">
+    <h2 class="text-5xl text-orange-500 text-center">Brands List</h2>
+    <div
+      class="parent mt-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
+      @for (brand of brandsList | paginate: { id: 'foo', itemsPerPage:
+      pageSize, currentPage: p, totalItems: total } ; track brand._id) {
+        <div class="card overflow-hidden group/card">
+  <div
+          [routerLink]="['/specific-brand', brand.slug, brand._id ]"
+    class="cursor-pointer"
+  >
+    <img
+      [src]="brand.image"
+      class="w-full rounded-t h-[300px] mb-2"
+      [alt]="brand.name"
+    />
+    <hr class="text-gray-400">
+    <h4 class="text-lg py-2 font-bold line-clamp-1">
+      {{ brand.name}}
+    </h4>
+  </div>
+</div>
+      }
+    </div>
+
+    <div class="flex justify-center mt-4">
+      <pagination-controls
+        class="my-pagination"
+        id="foo"
+        (pageChange)="getBrands($event)"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+</section>

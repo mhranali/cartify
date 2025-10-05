@@ -1,0 +1,44 @@
+<section
+  class="bg-gray-100 border border-gray-200 p-4 shadow-md md:w-1/2 m-auto my-14 rounded-lg"
+>
+  <h1 class="text-center mb-3 font-light text-3xl">LOGIN NOW</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+    <app-input
+      [control]="loginForm.get('email')"
+      [typeInput]="'email'"
+      [idInput]="'email'"
+      [labelInput]="'E-MAIL'"
+    ></app-input>
+
+    <app-input
+      [control]="loginForm.get('password')"
+      [idInput]="'password'"
+      [labelInput]="'PASSWORD'"
+    >
+      Custom field should match the patterns
+    </app-input>
+
+    <div class="flex items-center space-x-120">
+      <a
+        routerLink="/forgot"
+        class="text-sky-500 cursor-pointer hover:text-sky-600 duration-300"
+      >
+        Forgot Password</a
+      >
+
+      <button class="btn-main" type="submit">
+        REGISTER @if (isLoading) {
+        <span><i class="fas fa-spinner animate-spin"></i></span>
+        }
+      </button>
+    </div>
+
+    @if (msgError) {
+    <p
+      class="text-center text-red-700 mt-4 p-4 bg-red-200 rounded-xl shadow-xl"
+    >
+      {{ msgSuccess }}
+    </p>
+    }
+  </form>
+</section>
