@@ -18,7 +18,7 @@
       Custom field should match the patterns
     </app-input>
 
-    <div class="flex items-center space-x-120">
+    <div class="flex items-center justify-between">
       <a
         routerLink="/forgot"
         class="text-sky-500 cursor-pointer hover:text-sky-600 duration-300"
@@ -27,7 +27,7 @@
       >
 
       <button class="btn-main" type="submit">
-        REGISTER @if (isLoading) {
+        Login @if (isLoading) {
         <span><i class="fas fa-spinner animate-spin"></i></span>
         }
       </button>
