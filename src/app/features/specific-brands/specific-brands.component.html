@@ -1,38 +1,44 @@
 <section>
-    <div class="container w-[90%]">
-<section class="bg-white py-16 border border-gray-400">
-  <div class="container w-[90%] mx-auto">
-    <h2 class="text-5xl text-orange-500 text-center">Products List</h2>
-
-    <input
-      type="search"
-      class="border border-orange-600 block w-1/2 mx-auto my-10 rounded"
-    />
+  <div class="container w-[90%]">
     <div
-      class="parent mt-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      class="flex items-center justify-around w-[75%] m-auto bg-gray-200 border-8 border-orange-400 rounded-lg my-5 p-4"
     >
-      @for (product of productsList | paginate: { id: 'foo', itemsPerPage:
-      pageSize, currentPage: p, totalItems: total } |search:text; track
-      product.id) {
-      @if (product.brand.slug === `${name}`) {
-        <app-card [product]="product" />
-      }
-      }
+      <div>
+        <img
+          [src]="`${brand.image}`"
+          class="w-full rounded"
+          alt="{{ brand.name }}"
+        />
+      </div>
+      <div>
+        <h3 class="text-2xl">Category Name:</h3>
+        <span class="text-orange-500 bg-orange-100 text-2xl">{{
+          brand.name
+        }}</span>
+        <h4>
+          Last Update: <span>{{ brand.updatedAt | term : 10 }}</span>
+        </h4>
+      </div>
     </div>
 
+    <div class="bg-white py-16 border border-gray-400">
+      <div class="container w-[90%] mx-auto">
+        <h2 class="text-5xl text-orange-500 text-center">{{brand.name}} Products List</h2>
 
-         <div class="flex justify-center mt-4">
-      <pagination-controls
-        class="my-pagination"
-        id="foo"
-        (pageChange)="getAllProductsData($event)"
-      >
-      </pagination-controls>
+        <input
+          type="search"
+          class="border border-orange-600 block w-1/2 mx-auto my-10 rounded"
+        />
+        <div
+          class="parent mt-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
+          @for (product of productsList |search:text; track product.id) {
+          @if(product.brand.slug === `${name}`){
+          <app-card [product]="product" />
+          }
+         }
+        </div>
+      </div>
     </div>
-     
-
   </div>
-</section>
-        
-    </div>
 </section>

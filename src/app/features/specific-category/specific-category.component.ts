@@ -18,10 +18,6 @@ export class SpecificCategoryComponent implements OnInit {
 
   productsList: Product[] = [];
 
-  pageSize!: number;
-  p!: number;
-  total!: number;
-
   text: string = '';
 
   name!: string | null;
@@ -35,9 +31,6 @@ export class SpecificCategoryComponent implements OnInit {
     this.productsService.getAllProducts(pageNumber).subscribe({
       next: (res) => {
         this.productsList = res.data;
-        this.pageSize = res.metadata.limit;
-        this.p = res.metadata.currentPage;
-        this.total = res.results;
         console.log(this.productsList);
       },
       error: (err) => {
